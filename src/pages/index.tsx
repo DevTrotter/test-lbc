@@ -1,8 +1,9 @@
 import type { FC } from 'react'
+import { Contact } from '../components/Contact/Contact'
 
 const Home: FC = () => {
   return (
-    <h1>Hello Word</h1>
+    <Contact/>
   )
 }
 

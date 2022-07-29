@@ -1,5 +1,9 @@
-{
-  "conversations": [
+import React from 'react'
+import StyledChat from './StyledChat'
+import { IoIosArrowBack } from 'react-icons/io';
+
+export const Chat = () => {
+  const dataConv = [
     {
       "id": 1,
       "recipientId": 3,
@@ -24,8 +28,9 @@
       "senderNickname": "Elodie",
       "lastMessageTimestamp": 1625648667
     }
-  ],
-  "messages": [
+  ]
+
+  const dataChat = [
     {
       "id": 1,
       "conversationId": 1,
@@ -54,27 +59,16 @@
       "authorId": 2,
       "body": "Bonjour c'est le premier message de la seconde conversation"
     }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "nickname": "Thibaut",
-      "token": "xxxx"
-    },
-    {
-      "id": 2,
-      "nickname": "Jeremie",
-      "token": "xxxx"
-    },
-    {
-      "id": 3,
-      "nickname": "Patrick",
-      "token": "xxxx"
-    },
-    {
-      "id": 4,
-      "nickname": "Elodie",
-      "token": "xxxx"
-    }
   ]
+  return (
+    <StyledChat>
+      <div className='header-Chat'>
+        <IoIosArrowBack/>
+        <img src="/assets/avatar.svg" alt=""/>
+        <h1>{dataConv[0].senderNickname}</h1>
+        <span>{dataConv[0].lastMessageTimestamp}</span>
+      </div>
+      
+    </StyledChat>
+  )
 }
