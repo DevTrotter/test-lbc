@@ -1,6 +1,7 @@
 import React from 'react'
 import StyledChat from './StyledChat'
 import { IoIosArrowBack } from 'react-icons/io';
+import { ListMessage } from '../ListMessage/ListMessage';
 
 export const Chat = () => {
   const dataConv = [
@@ -68,7 +69,7 @@ export const Chat = () => {
         <h1>{dataConv[0].senderNickname}</h1>
         <span>{dataConv[0].lastMessageTimestamp}</span>
       </div>
-      
+      <ListMessage data={dataChat} />
     </StyledChat>
   )
 }

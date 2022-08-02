@@ -1,10 +1,11 @@
 import React from 'react'
 import StyledMessage from './StyledMessage';
 
-export const Message = () => {
+export const Message = ({data}) => {
   return (
     <StyledMessage>
-      <h1>Message</h1>
+      <p>{data.body}</p>
+      <span>{data.timestamp}</span>
     </StyledMessage>
   )
 }

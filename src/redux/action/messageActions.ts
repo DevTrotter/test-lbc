@@ -1,28 +1,32 @@
 import { fetchApi } from "../../utils/fetchApi";
+import { getLoggedUserId } from '../../utils/getLoggedUserId';
 
-export const getFetchExemple = () => async (dispatch) => {
+export const fetchConversations = () => async (dispatch) => {
   dispatch({
-    type: FETCH_EXAMPLE_BEGIN,
+    type: FETCH_CONVERSATIONS_BEGIN,
   });
   try {
+    const id = getLoggedUserId()
     const res = await fetchApi({
       method: "GET",
-      url: ``,
+      url: `/conversations?senderId=${id}`,
     });
-    const movies = res.data;
+    const conversations = res.data;
     dispatch({
-      type: GET_EXAMPLE_SUCCESS,
-      payload: movies.results,
+      type: FETCH_CONVERSATIONS_SUCCESS,
+      payload: {
+        id,
+        conversations,
+      }
     });
-    return movies.results;
   } catch (err) {
     dispatch({
-      type: FETCH_EXAMPLE_FAIL,
+      type: FETCH_CONVERSATIONS_FAIL,
       payload: err.response.data.error,
     });
   }
 };
 
-export const FETCH_EXAMPLE_BEGIN = "FETCH_EXAMPLE_BEGIN";
-export const GET_EXAMPLE_SUCCESS = "GET_EXAMPLE_SUCCESS";
-export const FETCH_EXAMPLE_FAIL = "FETCH_EXAMPLE_FAIL";
+export const FETCH_CONVERSATIONS_BEGIN = "FETCH_CONVERSATIONS_BEGIN";
+export const FETCH_CONVERSATIONS_SUCCESS = "FETCH_CONVERSATIONS_SUCCESS";
+export const FETCH_CONVERSATIONS_FAIL = "FETCH_CONVERSATIONS_FAIL";
