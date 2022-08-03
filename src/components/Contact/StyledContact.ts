@@ -21,6 +21,7 @@ const StyledContact = styled.section`
       width: 24px;
       height: 24px;
       color: #99A1AB;
+      cursor: pointer;
     }
   }
 `

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import StyledSearchBar from './StyledSearchBar'
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export const SearchBar = () => {
-  const [inputValue, setInputValue] = useState("")
+export const SearchBar = ({inputValue, setInputValue}) => {
+
 
   const handleChange = (e) => {
     setInputValue(e.target.value)

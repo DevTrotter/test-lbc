@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 
 const StyledCardContact = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 24px;
   position: relative;
   overflow: hidden;
+  background: #FFFFFF;
+  transition: 300ms;
   .contact-container{
     display: flex;
     align-items: center;
@@ -26,6 +29,7 @@ const StyledCardContact = styled.div`
         font-size: 14px;
         line-height: 16px;
         color: #000000;
+        transition: 300ms;
       }
       p{
         font-family: 'Poppins';
@@ -47,20 +51,26 @@ const StyledCardContact = styled.div`
   }
   .custom-bar{
     position: absolute;
+    left: -8px;
+    width: 12px;
+    height: 40px;
+    background: #FF6E14;
+    border-radius: 14px;
+    opacity: 0;
+    transition: 300ms;
   }
 
   :hover{
-    h1{
-
-    }
-    p{
-
-    }
-    span{
-
+    background: #F0F3F6;
+    .contact-container{
+      .name-container{
+        h1{
+          color: #FF6E14;
+        }
+      }
     }
     .custom-bar{
-      
+      opacity: 1;
     }
   }
 `

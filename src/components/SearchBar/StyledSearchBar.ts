@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const StyledSearchBar = styled.div`
-  position: relative;
   padding: 16px 22px;
+  position: relative;
   input{
     width: calc(100% - 46px);
     border: none;

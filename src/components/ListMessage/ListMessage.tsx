@@ -6,7 +6,7 @@ export const ListMessage = ({data}) => {
   return (
     <StyledListMessage>
       {
-        data.map(message => <Message key={message.id} data={message}/>)
+        data?.map(message => <Message key={message.id} data={message}/>)
       }
     </StyledListMessage>
   )

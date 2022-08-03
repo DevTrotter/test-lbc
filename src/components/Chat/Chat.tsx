@@ -1,75 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import StyledChat from './StyledChat'
 import { IoIosArrowBack } from 'react-icons/io';
 import { ListMessage } from '../ListMessage/ListMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMessages, fetchConversations } from '../../redux/action/messageActions';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { MessageSender } from '../MessageSender/MessageSender';
 
 export const Chat = () => {
-  const dataConv = [
-    {
-      "id": 1,
-      "recipientId": 3,
-      "recipientNickname": "Patrick",
-      "senderId": 1,
-      "senderNickname": "Thibaut",
-      "lastMessageTimestamp": 1625637849
-    },
-    {
-      "id": 2,
-      "recipientId": 3,
-      "recipientNickname": "Patrick",
-      "senderId": 1,
-      "senderNickname": "Thibaut",
-      "lastMessageTimestamp": 1620284667
-    },
-    {
-      "id": 3,
-      "recipientId": 3,
-      "recipientNickname": "Patrick",
-      "senderId": 4,
-      "senderNickname": "Elodie",
-      "lastMessageTimestamp": 1625648667
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const { conversations, messages} = useSelector(state => state.messageReducer)
+  console.log(conversations)
+  const id = Number(router.query.slug)
+  const timestamp = new Date(conversations[id - 1]?.lastMessageTimestamp)
+  const date = `${timestamp.getDate()}/${timestamp.getMonth() + 1}/${timestamp.getFullYear()}`;
+  useEffect(() => {
+    if(conversations.length === 0){
+      dispatch(fetchConversations())
     }
-  ]
-
-  const dataChat = [
-    {
-      "id": 1,
-      "conversationId": 1,
-      "timestamp": 1625637849,
-      "authorId": 1,
-      "body": "Bonjour c'est le premier message de la première conversation"
-    },
-    {
-      "id": 2,
-      "conversationId": 1,
-      "timestamp": 1625637867,
-      "authorId": 1,
-      "body": "Bonjour c'est le second message de la première conversation"
-    },
-    {
-      "id": 3,
-      "conversationId": 1,
-      "timestamp": 1625648667,
-      "authorId": 2,
-      "body": "Bonjour c'est le troisième message de la première conversation"
-    },
-    {
-      "id": 4,
-      "conversationId": 2,
-      "timestamp": 1620284667,
-      "authorId": 2,
-      "body": "Bonjour c'est le premier message de la seconde conversation"
-    }
-  ]
+    dispatch(fetchMessages(id))
+  },[conversations])
   return (
     <StyledChat>
-      <div className='header-Chat'>
-        <IoIosArrowBack/>
+      <div className='header-chat'>
+        <Link href="/">
+          <IoIosArrowBack/>
+        </Link>
         <img src="/assets/avatar.svg" alt=""/>
-        <h1>{dataConv[0].senderNickname}</h1>
-        <span>{dataConv[0].lastMessageTimestamp}</span>
+        <div className='text-container'>
+          <h1>{conversations[id - 1]?.recipientNickname}</h1>
+          <span>{date}</span>
+        </div>
       </div>
-      <ListMessage data={dataChat} />
+      <ListMessage data={messages}/>
+      <MessageSender id={id}/>
     </StyledChat>
   )
 }
