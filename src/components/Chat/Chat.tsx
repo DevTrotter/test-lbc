@@ -12,7 +12,6 @@ export const Chat = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { conversations, messages} = useSelector(state => state.messageReducer)
-  console.log(conversations)
   const id = Number(router.query.slug)
   const timestamp = new Date(conversations[id - 1]?.lastMessageTimestamp)
   const date = `${timestamp.getDate()}/${timestamp.getMonth() + 1}/${timestamp.getFullYear()}`;

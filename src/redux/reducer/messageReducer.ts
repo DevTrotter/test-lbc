@@ -83,7 +83,6 @@ export default (state = initialState, action) => {
         loading: true,
       };
     case SEND_CONVERSATION_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         loading: false,

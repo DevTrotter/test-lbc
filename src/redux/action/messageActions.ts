@@ -62,7 +62,6 @@ export const addNewMessage = (data) => async (dispatch, getState) => {
     type: SEND_MESSAGE_BEGIN,
   });
   try {
-    console.log(data)
     const res = await fetchApi({
       method: "POST",
       url: `/messages/${data.conversationId}`,
